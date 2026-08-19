@@ -1,6 +1,6 @@
 # 🌊 Ocean Safe
 
-A mobile-first web app that combines real-time ocean/beach conditions, an AI safety chatbot, community hazard reporting, and fishing guidance into one platform — built to keep beachgoers safe and informed.
+A mobile-first web app that combines real-time ocean/beach conditions, an AI safety chatbot, community hazard reporting, and fishing guidance into one platform, built to keep beachgoers safe and informed.
 
 **Recognition:** Top 10 finalist, Congressional App Challenge — California's 47th Congressional District.
 
@@ -45,7 +45,7 @@ This prototype was built as a **Python/Streamlit web app** to move fast on a wor
 - **Mapping:** Mapbox GL JS (embedded via `streamlit.components.v1`), including live geolocation and walking directions
 - **Deployable via GitHub Codespaces** — `.devcontainer/devcontainer.json` auto-installs dependencies and launches the app on attach
 
-The original pitch's target stack for a production mobile app was native iOS (Swift/Xcode) with Firebase for auth/database/hosting — a natural next step once the concept, chatbot, and data integrations are validated (which is what this prototype does).
+The original pitch's target stack for a production mobile app was native iOS (Swift/Xcode) with Firebase for auth/database/hosting; a natural next step once the concept, chatbot, and data integrations are validated (which is what this prototype does).
 
 ## Repository structure
 
@@ -84,7 +84,7 @@ Or open the repo in **GitHub Codespaces** — the devcontainer installs everythi
 
 ## Future work
 
-Building out the remaining MVP scope (push notification alerts, the fishing guide, a fully live green/yellow/red hazard rating), then the stretch goals: gamified hazard reporting, AR rip-current overlay, image-based AI hazard detection, and multilingual support — eventually migrating the validated concept to a native iOS app on Firebase, as originally scoped.
+Building out the remaining MVP scope (push notification alerts, the fishing guide, a fully live green/yellow/red hazard rating), then the stretch goals: gamified hazard reporting, AR rip-current overlay, image-based AI hazard detection, and multilingual support; eventually migrating the validated concept to a native iOS app on Firebase, as originally scoped.
 
 ## Author
 
