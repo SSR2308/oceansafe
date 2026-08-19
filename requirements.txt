@@ -1,0 +1,8 @@
+langchain==0.3.27
+langchain-core==0.3.77
+langchain-openai==0.3.34
+pinecone==7.3.0
+streamlit
+pandas
+requests
+plotly
