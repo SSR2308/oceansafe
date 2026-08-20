@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>OceanSafe | Shravan Suresh</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="site-nav">
+  <div class="wrap">
+    <a class="brand" href="index.html">Shravan Suresh</a>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="vex-robotics.html">VEX Robotics</a>
+      <a href="bionic-hand.html">Bionic Hand</a>
+      <a href="research.html">Research</a>
+      <a href="oceansafe.html" class="current">OceanSafe</a>
+      <a href="resume.pdf">Resume</a>
+    </nav>
+  </div>
+</header>
+
+<div class="project-hero">
+  <div class="wrap">
+    <div class="eyebrow">Mobile-First Web App · RAG Chatbot · Live Ocean Data</div>
+    <h1>OceanSafe</h1>
+    <div class="meta">
+      <span>Solo Developer</span>
+      <span>Congressional App Challenge — Top 10, CA-47</span>
+    </div>
+    <div class="stat-row">
+      <div class="stat-box"><div class="num">Top 10</div><div class="label">CA-47 Congressional App Challenge</div></div>
+      <div class="stat-box"><div class="num">6</div><div class="label">SoCal beaches covered</div></div>
+      <div class="stat-box"><div class="num">RAG</div><div class="label">AI chatbot, grounded in real sources</div></div>
+    </div>
+  </div>
+</div>
+
+<article class="wrap" style="padding-top:48px;">
+
+  <p class="section-sub" style="font-size:1.05rem;">
+    A mobile-first web app that combines live ocean/beach conditions, an AI safety chatbot, and
+    community hazard reporting into one platform. Built solo as a working Streamlit prototype to
+    validate the concept before a native app — the write-up below is honest about what's actually
+    built versus what's still the pitch.
+  </p>
+
+  <div class="section-block">
+    <h2>Overview</h2>
+    <a class="repo-link" href="https://github.com/SSR2308/oceansafe" target="_blank" rel="noopener">
+      &#128279; View code on GitHub
+    </a>
+    <p>
+      The pitch: combine real-time ocean data, AI insights, fishing guidance, and community reporting
+      into one platform to keep beachgoers — surfers, swimmers, lifeguards, and families — safe and
+      informed at Southern California beaches. It placed in the <strong>Top 10 for California's 47th
+      Congressional District</strong> in the Congressional App Challenge.
+    </p>
+    <p>
+      Rather than build toward a native app blind, I built a working Python/Streamlit prototype first —
+      real APIs, a real chatbot, a real map — to validate the concept, the data integrations, and the
+      chatbot before committing to the bigger iOS/Firebase build the original pitch scoped.
+    </p>
+    <div style="max-width:600px;margin:20px auto 6px;aspect-ratio:16/9;border-radius:var(--radius);overflow:hidden;box-shadow:0 4px 14px rgba(11,31,58,0.08);">
+      <iframe src="https://drive.google.com/file/d/1-xldHEz9fxrd6zQRUwMC227LTkRYFs2V/preview" style="width:100%;height:100%;border:0;" allow="autoplay" allowfullscreen></iframe>
+    </div>
+    <p class="photo-caption">Presentation — the idea, the RAG pipeline, and a live demo of the app</p>
+  </div>
+
+  <div class="section-block">
+    <h2>What's actually built</h2>
+    <p>
+      Three working pieces, all live in the Streamlit prototype:
+    </p>
+    <ul class="clean">
+      <li><strong>Beach Safety Dashboard</strong> — live weather (OpenWeatherMap) and NOAA tide predictions for six Southern California beaches (Santa Monica Pier, Venice Beach, Malibu Surfrider, Huntington Beach, Newport Beach, Laguna Beach), each with visitor info like parking, hours, and dog policy.</li>
+      <li><strong>Interactive hazard map</strong> — a Mapbox GL map centered on the user's live location; click anywhere to drop a geotagged hazard report (jellyfish, trash, high surf, broken glass, etc.), with turn-by-turn walking directions to the selected beach.</li>
+      <li><strong>Tidebot</strong> — a retrieval-augmented AI chatbot that answers beach-safety questions grounded in a curated knowledge base, rather than making things up.</li>
+    </ul>
+    <div class="media-grid">
+      <div>
+        <img src="assets/oceansafe/hazard-map.jpg" alt="OceanSafe hazard map — click-to-report interface with live location">
+      </div>
+      <div>
+        <img src="assets/oceansafe/tidebot-chat.jpg" alt="Tidebot chatbot answering a question about jellyfish sting treatment">
+      </div>
+    </div>
+    <p class="photo-caption">The hazard map and Tidebot, running in the actual prototype</p>
+  </div>
+
+  <div class="section-block">
+    <h2>Tidebot's RAG pipeline</h2>
+    <p>
+      Tidebot embeds each incoming question with OpenAI's <code>text-embedding-ada-002</code>, retrieves
+      the top-matching chunks from a Pinecone vector index built from a curated beach-safety knowledge
+      base, and passes those chunks as context to <code>gpt-4o-mini</code> through a LangChain prompt
+      template. The prompt explicitly instructs the model to answer only from the retrieved context and
+      to say so if the answer isn't in it, rather than filling gaps with general chatbot knowledge —
+      the jellyfish-sting answer in the screenshot above, for example, is grounded in a specific
+      first-aid source rather than generic web knowledge.
+    </p>
+    <img class="doc-shot wide" src="assets/oceansafe/rag-pipeline-diagram.jpg" alt="Retrieval-augmented generation sequence diagram — document ingestion into a vector DB, then query embedding, retrieval, and LLM response generation">
+    <p class="photo-caption">RAG sequence — document ingestion (top) and query/response flow (bottom)</p>
+  </div>
+
+  <div class="section-block">
+    <h2>Vision vs. what's built</h2>
+    <p>
+      The original pitch scoped a fuller MVP — real-time NOAA/Surfline/local-government hazard alerts
+      with push notifications, first-aid guidance baked into the AI assistant, a fishing guide with
+      CA regulations and catch limits, and a color-coded green/yellow/red safety rating per beach.
+      The prototype validates the core concept (live data, AI chatbot, hazard reporting) but doesn't
+      yet cover push alerts, the fishing guide, or the color-coded rating system. Stretch goals beyond
+      that include gamified hazard reporting, an AR rip-current overlay, AI hazard detection from
+      photos, and multilingual support (Spanish, Vietnamese, Korean).
+    </p>
+    <p class="code-caption" style="margin-top:4px;">
+      Tech stack: Python · Streamlit · LangChain + OpenAI (gpt-4o-mini) · Pinecone · NOAA Tides &amp; Currents API · OpenWeatherMap API · Mapbox GL JS
+    </p>
+  </div>
+
+</article>
+
+<footer>
+  <div class="wrap">
+    <div>
+      <a href="mailto:you@example.com">Email</a>
+      <a href="https://github.com/YOUR-USERNAME">GitHub</a>
+      <a href="https://linkedin.com/in/YOUR-PROFILE">LinkedIn</a>
+    </div>
+    <div>&copy; 2026 Shravan Suresh</div>
+  </div>
+</footer>
+
+</body>
+</html>
